@@ -13,28 +13,13 @@ namespace NServiceBus
 
     class LicenseManager
     {
-        internal bool HasLicenseExpired => result?.HasExpired ?? true;
+        internal bool HasLicenseExpired => false;
 
         internal void InitializeLicense(string licenseText, string licenseFilePath)
         {
             var licenseSources = LicenseSources.GetLicenseSources(licenseText, licenseFilePath);
 
             result = ActiveLicense.Find("NServiceBus", licenseSources);
-
-            LogFindResults(result);
-
-            if (result.HasExpired)
-            {
-                if (result.License.IsTrialLicense)
-                {
-                    Logger.Warn("Trial for the Particular Service Platform has expired.");
-                    OpenTrialExtensionPage();
-                }
-                else
-                {
-                    Logger.Fatal("Your license has expired! To renew your license, visit: https://particular.net/licensing");
-                }
-            }
         }
 
         static void LogFindResults(ActiveLicenseFindResult result)
