@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <PackageId>NServiceBus</PackageId>
+    <PackageId>Nerosoft-NServiceBus</PackageId>
     <Description>The most popular open-source service bus for .NET</Description>
   </PropertyGroup>
 
